@@ -22,6 +22,12 @@ primary unit, and color-coded state instead of raw tick/RPM math.
 Covers Millstone, Crushing Wheels, Mechanical Press/Mixer/Saw, Deployer, Encased Fan, Belts, Pumps,
 and Spouts.
 
+## Maintenance
+
+This is a personal project, built with a lot of help from Claude (Anthropic's AI). I'm not
+planning to actively fix issues or take feature requests - if something's broken for you or you
+want to take it further, please fork it or build your own version.
+
 ## Requirements
 
 - NeoForge 1.21.1 (21.1.0+)
