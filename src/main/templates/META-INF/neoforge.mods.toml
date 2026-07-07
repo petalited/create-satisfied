@@ -39,7 +39,7 @@ displayName="${mod_name}" #mandatory
 logoFile="icon.png" #optional
 
 # A text field displayed in the mod UI
-#credits="" #optional
+credits="Mod icon adapted from Satisfactory's FICSIT checkmark logo (Coffee Stain Studios). Fan work, not affiliated with or endorsed by Coffee Stain Studios."
 
 # The authors of the mod, displayed in the mod UI (optional)
 #authors=""

@@ -43,3 +43,9 @@ issues, `./gradlew --refresh-dependencies` usually fixes it.
 This project uses Mojang's official mapping names, which are covered by their own license - see
 the mapping file itself or the reference copy at
 https://github.com/NeoForged/NeoForm/blob/main/Mojang.md.
+
+## Disclaimer
+
+The mod icon is adapted from the FICSIT checkmark logo from
+[Satisfactory](https://www.satisfactorygame.com/) by Coffee Stain Studios. This project is a fan
+work, not affiliated with or endorsed by Coffee Stain Studios in any way.
