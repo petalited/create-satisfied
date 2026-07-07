@@ -2,7 +2,7 @@
 
 [Available on Modrinth](https://modrinth.com/mod/create-satisfied)
 
-A NeoForge 1.21.1 addon for [Create](https://www.curseforge.com/minecraft/mc-mods/create), bringing
+A NeoForge 1.21.1 addon for [Create](https://modrinth.com/mod/create), bringing
 Satisfactory-style throughput clarity to Create's machines: instant feedback, items/min as the
 primary unit, and color-coded state instead of raw tick/RPM math.
 
@@ -33,8 +33,8 @@ want to take it further, please fork it or build your own version.
 ## Requirements
 
 - NeoForge 1.21.1 (21.1.0+)
-- [Create](https://www.curseforge.com/minecraft/mc-mods/create) 6.0.0+
-- [JEI](https://www.curseforge.com/minecraft/mc-mods/jei) (optional — only the JEI sliders need it,
+- [Create](https://modrinth.com/mod/create) 6.0.0+
+- [JEI](https://modrinth.com/mod/jei) (optional — only the JEI sliders need it,
   the goggle overlay works without it)
 
 ## Building
