@@ -1,6 +1,6 @@
 # Create: Satisfied
 
-[Available on Modrinth](https://modrinth.com/mod/create-satisfied)
+[Available on Modrinth](https://modrinth.com/mod/create-satisfied) | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-satisfied/)
 
 A NeoForge 1.21.1 addon for [Create](https://modrinth.com/mod/create), bringing
 Satisfactory-style throughput clarity to Create's machines: instant feedback, items/min as the
