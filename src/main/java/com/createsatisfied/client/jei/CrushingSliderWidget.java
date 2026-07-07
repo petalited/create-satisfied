@@ -104,7 +104,7 @@ public class CrushingSliderWidget implements IRecipeWidget, IJeiInputHandler {
         float ticksPerBatch = Math.max((duration - APPLY_THRESHOLD) / processingSpeed, 1f);
         float secondsPerBatch = ticksPerBatch / 20f;
 
-        String header = String.format("Batch: %s for %d item%s", ThroughputFormat.formatDuration(ticksPerBatch), stackSize, stackSize == 1 ? "" : "s");
+        String header = String.format("Batch: %s for %d item%s", ThroughputFormat.formatDuration(ticksPerBatch, stackSize), stackSize, stackSize == 1 ? "" : "s");
         tooltip.add(Component.literal(header).withStyle(ChatFormatting.WHITE));
         tooltip.addAll(ThroughputFormat.buildBatchLines(recipe, stackSize, secondsPerBatch));
         // A working pair always has two wheels, each contributing their own stress impact.

@@ -73,7 +73,7 @@ public class FanStackSliderWidget implements IRecipeWidget, IJeiInputHandler {
         float ticksPerBatch = ThroughputFormat.fanProcessingTicks(stackSize);
         float secondsPerBatch = ticksPerBatch / 20f;
 
-        String header = String.format("Batch: %s for %d item%s", ThroughputFormat.formatDuration(ticksPerBatch), stackSize, stackSize == 1 ? "" : "s");
+        String header = String.format("Batch: %s for %d item%s", ThroughputFormat.formatDuration(ticksPerBatch, stackSize), stackSize, stackSize == 1 ? "" : "s");
         tooltip.add(Component.literal(header).withStyle(ChatFormatting.WHITE));
         tooltip.addAll(ThroughputFormat.buildBatchLines(recipe, stackSize, secondsPerBatch));
         // Fans don't have an rpm control here (rpm is irrelevant to fan timing), but stress cost

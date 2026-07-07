@@ -36,10 +36,13 @@ public class ThroughputFormat {
 
     /**
      * Gray hint appended wherever a rate/duration number is shown, so the timeUnit config isn't
-     * only discoverable by digging through the mod's config screen.
+     * only discoverable by digging through the mod's config screen - names the *current* unit
+     * too, since otherwise there's no way to tell which of the 3 modes is active without opening
+     * the config screen or comparing numbers against memory.
      */
     public static Component scrollHintLine() {
-        return Component.literal("(Scroll to cycle time units)").withStyle(ChatFormatting.DARK_GRAY);
+        String unit = CreateSatisfiedConfig.TIME_UNIT.get().displayName();
+        return Component.literal("(Scroll to cycle time units - " + unit + ")").withStyle(ChatFormatting.DARK_GRAY);
     }
 
     /**
@@ -142,13 +145,31 @@ public class ThroughputFormat {
     }
 
     /**
-     * For durations (how long one operation/batch takes), as opposed to the rates above.
+     * For durations (how long one operation/batch takes), as opposed to the rates above. Use the
+     * {@link #formatDuration(float, int)} overload instead whenever the duration covers a batch of
+     * more than one item - a bare tick count has nothing left to invert for TICKS_PER_ITEM, so this
+     * single-item form is only for durations with no batch concept at all (e.g. one full Sequenced
+     * Assembly cycle, which always yields exactly one output regardless of PER_TICK/TICKS_PER_ITEM).
      */
     public static String formatDuration(float ticks) {
         if (isTickBased()) {
             return String.format("%.0f ticks", ticks);
         }
         return String.format("%.1fs", ticks / 20f);
+    }
+
+    /**
+     * Same as {@link #formatDuration(float)}, but for a duration covering {@code itemCount} items
+     * in one batch (Crushing/Fan-processing batches, etc.) - TICKS_PER_ITEM divides down to a
+     * genuine per-single-item tick count instead of falling through to the exact same "X ticks"
+     * text PER_TICK already shows for the whole batch, which read as a dead scroll step (2 of the
+     * 3 cycle positions looking identical).
+     */
+    public static String formatDuration(float ticks, int itemCount) {
+        if (CreateSatisfiedConfig.TIME_UNIT.get() == CreateSatisfiedConfig.TimeUnit.TICKS_PER_ITEM) {
+            return String.format("%.1f ticks/item", ticks / itemCount);
+        }
+        return formatDuration(ticks);
     }
 
     public static Component rateLine(String prefix, String itemName, float itemsPerMinute, ChatFormatting color) {

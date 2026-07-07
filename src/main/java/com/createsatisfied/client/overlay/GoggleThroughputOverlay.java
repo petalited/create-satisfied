@@ -314,7 +314,7 @@ public class GoggleThroughputOverlay {
         float ticksPerBatch = Math.max((recipe.getProcessingDuration() - 20f) / processingSpeed, 1f);
         float secondsPerBatch = ticksPerBatch / 20f;
 
-        String header = String.format("Crushing: %s for %d item%s", ThroughputFormat.formatDuration(ticksPerBatch), stackCount, stackCount == 1 ? "" : "s");
+        String header = String.format("Crushing: %s for %d item%s", ThroughputFormat.formatDuration(ticksPerBatch, stackCount), stackCount, stackCount == 1 ? "" : "s");
         tooltip.add(Component.literal(header).withStyle(ChatFormatting.WHITE));
         tooltip.addAll(ThroughputFormat.buildBatchLines(recipe, stackCount, secondsPerBatch));
         if (clickedWheel != null) {
@@ -557,8 +557,8 @@ public class GoggleThroughputOverlay {
         float ticksFor64 = ThroughputFormat.fanProcessingTicks(64);
 
         tooltip.add(Component.literal(fanProcessingTypeName(type)).withStyle(ChatFormatting.WHITE));
-        tooltip.add(Component.literal("1-16 items: " + ThroughputFormat.formatDuration(ticksFor16)).withStyle(ChatFormatting.GREEN));
-        tooltip.add(Component.literal("64 items: " + ThroughputFormat.formatDuration(ticksFor64)).withStyle(ChatFormatting.GREEN));
+        tooltip.add(Component.literal("1-16 items: " + ThroughputFormat.formatDuration(ticksFor16, 16)).withStyle(ChatFormatting.GREEN));
+        tooltip.add(Component.literal("64 items: " + ThroughputFormat.formatDuration(ticksFor64, 64)).withStyle(ChatFormatting.GREEN));
         tooltip.add(ThroughputFormat.stressLine(AllBlocks.ENCASED_FAN.get(), speed));
 
         return tooltip;

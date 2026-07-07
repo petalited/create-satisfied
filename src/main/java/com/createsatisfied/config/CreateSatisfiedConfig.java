@@ -26,6 +26,17 @@ public class CreateSatisfiedConfig {
         public Component getTranslatedName() {
             return Component.translatable("createsatisfied.configuration.timeUnit." + name().toLowerCase(Locale.ROOT));
         }
+
+        // Plain-English name for in-game tooltip lines (ThroughputFormat.scrollHintLine) - the
+        // rest of the mod's tooltips are hardcoded English literals rather than translation keys,
+        // so this matches that style instead of going through getTranslatedName()/I18n here.
+        public String displayName() {
+            return switch (this) {
+                case PER_MINUTE -> "Per Minute";
+                case PER_TICK -> "Per Tick";
+                case TICKS_PER_ITEM -> "Ticks Per Item";
+            };
+        }
     }
 
     // .translation(...) sets the lang key NeoForge's config screen uses for this entry's label -
