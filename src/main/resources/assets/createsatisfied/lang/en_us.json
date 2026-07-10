@@ -3,5 +3,6 @@
   "createsatisfied.configuration.timeUnit": "Time Unit",
   "createsatisfied.configuration.timeUnit.per_minute": "Per Minute",
   "createsatisfied.configuration.timeUnit.per_tick": "Per Tick",
-  "createsatisfied.configuration.timeUnit.ticks_per_item": "Ticks Per Item"
+  "createsatisfied.configuration.timeUnit.ticks_per_item": "Ticks Per Item",
+  "createsatisfied.configuration.scrollChangesTimeUnit": "Scroll Changes Time Unit"
 }

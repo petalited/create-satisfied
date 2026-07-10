@@ -94,8 +94,8 @@ public class GoggleThroughputOverlay {
         if (tooltip == null || tooltip.isEmpty()) {
             return;
         }
-        if (visible) {
-            tooltip.add(ThroughputFormat.scrollHintLine());
+        if (visible && CreateSatisfiedConfig.SCROLL_CHANGES_TIME_UNIT.get()) {
+            tooltip.add(ThroughputFormat.scrollHintLineSneak());
         }
 
         int width = event.getGuiGraphics().guiWidth();
@@ -209,10 +209,18 @@ public class GoggleThroughputOverlay {
 
     /**
      * Scroll normally switches hotbar slots, so this only intercepts (and cancels, so the hotbar
-     * doesn't ALSO change) while the overlay actually has a tooltip on screen.
+     * doesn't ALSO change) while the overlay actually has a tooltip on screen AND the player is
+     * sneaking. Gating on "tooltip visible" alone wasn't enough in practice - with goggles on,
+     * looking at any supported machine (which happens constantly while building/adjusting a
+     * factory) silently ate every hotbar-switch scroll. Sneak doesn't conflict with anything
+     * vanilla uses scroll for, so it adds zero new conflicts either way.
      */
     public static void onMouseScroll(InputEvent.MouseScrollingEvent event) {
         if (!visible) {
+            return;
+        }
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.player == null || !mc.player.isShiftKeyDown()) {
             return;
         }
         double deltaY = event.getScrollDeltaY();

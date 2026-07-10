@@ -69,7 +69,9 @@ public class RpmSliderWidget implements IRecipeWidget, IJeiInputHandler {
         float opsPerMinute = formula.opsPerMinute(rpm, recipe);
         tooltip.addAll(ThroughputFormat.buildRateLines(recipe, opsPerMinute));
         tooltip.add(ThroughputFormat.stressLine(stressBlock, rpm));
-        tooltip.add(ThroughputFormat.scrollHintLine());
+        if (CreateSatisfiedConfig.SCROLL_CHANGES_TIME_UNIT.get()) {
+            tooltip.add(ThroughputFormat.scrollHintLine());
+        }
     }
 
     @Override

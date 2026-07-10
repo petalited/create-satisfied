@@ -54,6 +54,14 @@ public class CreateSatisfiedConfig {
         )
         .defineEnum("timeUnit", TimeUnit.PER_MINUTE);
 
+    public static final ModConfigSpec.BooleanValue SCROLL_CHANGES_TIME_UNIT = BUILDER
+        .translation("createsatisfied.configuration.scrollChangesTimeUnit")
+        .comment(
+            "Whether scrolling over throughput/duration displays cycles the time unit above live.",
+            "Disable this to keep whichever unit is set in timeUnit fixed, and ignore scroll input for it."
+        )
+        .define("scrollChangesTimeUnit", true);
+
     public static final ModConfigSpec SPEC = BUILDER.build();
 
     /**
@@ -68,8 +76,14 @@ public class CreateSatisfiedConfig {
      * Same, but direction-aware - lets scroll-up/scroll-down step forward/backward through the
      * three options instead of always landing on the same next value regardless of scroll
      * direction, which would feel wrong for a scroll gesture (unlike a single-purpose keypress).
+     *
+     * No-ops when scrollChangesTimeUnit is disabled, so all call sites (JEI widgets, the goggle
+     * overlay) automatically respect the setting without each needing its own check.
      */
     public static void cycleTimeUnit(int direction) {
+        if (!SCROLL_CHANGES_TIME_UNIT.get()) {
+            return;
+        }
         TimeUnit[] values = TimeUnit.values();
         TimeUnit next = values[Math.floorMod(TIME_UNIT.get().ordinal() + direction, values.length)];
         TIME_UNIT.set(next);

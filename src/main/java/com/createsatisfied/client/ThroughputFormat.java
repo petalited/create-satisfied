@@ -46,6 +46,18 @@ public class ThroughputFormat {
     }
 
     /**
+     * GoggleThroughputOverlay's own out-of-GUI copy of this hint - unlike every other caller of
+     * scrollHintLine() above (all inside a GUI screen, where vanilla doesn't scroll the hotbar
+     * anyway), plain scroll while goggles are on and looking at a machine would otherwise fight
+     * hotbar-switching, so GoggleThroughputOverlay.onMouseScroll requires sneaking too - this hint
+     * needs to say so, or the behavior looks broken instead of just gated.
+     */
+    public static Component scrollHintLineSneak() {
+        String unit = CreateSatisfiedConfig.TIME_UNIT.get().displayName();
+        return Component.literal("(Sneak + Scroll to cycle time units - " + unit + ")").withStyle(ChatFormatting.DARK_GRAY);
+    }
+
+    /**
      * Checks the three ways a kinetic machine can fail to actually run a recipe despite looking
      * powered, matching the design goal of distinguishing these instead of collapsing them into
      * one flat "stalled" state: overstressed (network demands more stress than its capacity -

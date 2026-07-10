@@ -52,7 +52,9 @@ public class FixedRateWidget implements IRecipeWidget, IJeiInputHandler {
     public void getTooltip(ITooltipBuilder tooltip, double mouseX, double mouseY) {
         tooltip.add(Component.literal("Fixed rate - unaffected by rpm or belt speed").withStyle(ChatFormatting.GRAY));
         tooltip.addAll(ThroughputFormat.buildRateLines(recipe, opsPerMinute));
-        tooltip.add(ThroughputFormat.scrollHintLine());
+        if (CreateSatisfiedConfig.SCROLL_CHANGES_TIME_UNIT.get()) {
+            tooltip.add(ThroughputFormat.scrollHintLine());
+        }
     }
 
     @Override

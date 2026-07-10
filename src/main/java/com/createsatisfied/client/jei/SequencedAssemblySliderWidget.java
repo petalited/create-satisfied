@@ -93,7 +93,9 @@ public class SequencedAssemblySliderWidget implements IRecipeWidget, IJeiInputHa
             float opsPerMinute = resolveOpsPerMinute(step.getRecipe(), rpm);
             if (opsPerMinute <= 0f) {
                 tooltip.add(Component.literal("Stalled").withStyle(ChatFormatting.GRAY));
-                tooltip.add(ThroughputFormat.scrollHintLine());
+                if (CreateSatisfiedConfig.SCROLL_CHANGES_TIME_UNIT.get()) {
+                    tooltip.add(ThroughputFormat.scrollHintLine());
+                }
                 return;
             }
             totalTicks += ThroughputFormat.TICKS_PER_MINUTE / opsPerMinute;
@@ -171,7 +173,9 @@ public class SequencedAssemblySliderWidget implements IRecipeWidget, IJeiInputHa
         // so the combined total doesn't read as just another machine's individual cost - GOLD was
         // avoided since Create already uses it for the "Overstressed" warning elsewhere.
         tooltip.add(Component.literal(String.format("Total stress: %.1f su", totalStress)).withStyle(ChatFormatting.YELLOW));
-        tooltip.add(ThroughputFormat.scrollHintLine());
+        if (CreateSatisfiedConfig.SCROLL_CHANGES_TIME_UNIT.get()) {
+            tooltip.add(ThroughputFormat.scrollHintLine());
+        }
     }
 
     private static float resolveOpsPerMinute(ProcessingRecipe<?, ?> stepRecipe, float rpm) {

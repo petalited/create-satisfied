@@ -90,7 +90,9 @@ public class CrushingSliderWidget implements IRecipeWidget, IJeiInputHandler {
         float speed = Math.abs(rpm) / 50f * 4f;
         if (speed == 0) {
             tooltip.add(Component.literal("Stalled").withStyle(ChatFormatting.GRAY));
-            tooltip.add(ThroughputFormat.scrollHintLine());
+            if (CreateSatisfiedConfig.SCROLL_CHANGES_TIME_UNIT.get()) {
+                tooltip.add(ThroughputFormat.scrollHintLine());
+            }
             return;
         }
 
@@ -109,7 +111,9 @@ public class CrushingSliderWidget implements IRecipeWidget, IJeiInputHandler {
         tooltip.addAll(ThroughputFormat.buildBatchLines(recipe, stackSize, secondsPerBatch));
         // A working pair always has two wheels, each contributing their own stress impact.
         tooltip.add(ThroughputFormat.stressLine(stressBlock, rpm, 2));
-        tooltip.add(ThroughputFormat.scrollHintLine());
+        if (CreateSatisfiedConfig.SCROLL_CHANGES_TIME_UNIT.get()) {
+            tooltip.add(ThroughputFormat.scrollHintLine());
+        }
     }
 
     @Override

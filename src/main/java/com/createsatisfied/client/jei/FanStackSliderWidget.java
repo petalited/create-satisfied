@@ -81,7 +81,9 @@ public class FanStackSliderWidget implements IRecipeWidget, IJeiInputHandler {
         // reference point, matching the "1-16 items / 64 items" dual-reference style above.
         float stressAt256 = (float) BlockStressValues.getImpact(AllBlocks.ENCASED_FAN.get()) * 256f;
         tooltip.add(Component.literal(String.format("Stress: %.1f su (at 256 rpm)", stressAt256)).withStyle(ChatFormatting.AQUA));
-        tooltip.add(ThroughputFormat.scrollHintLine());
+        if (CreateSatisfiedConfig.SCROLL_CHANGES_TIME_UNIT.get()) {
+            tooltip.add(ThroughputFormat.scrollHintLine());
+        }
     }
 
     @Override
